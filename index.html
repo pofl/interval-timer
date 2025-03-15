@@ -16,6 +16,12 @@
       --main-color: #ece5d2;
     }
 
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
     #root {
       max-width: 25em;
       margin: auto;
@@ -129,7 +135,7 @@
       }
 
       return (
-        <div>
+        <div style={{padding:'5px'}}>
           <SettingControl value={workTime} label="Work Time" onChange={(value) => setWorkTime(value)} />
           <SettingControl value={restTime} label="Rest Time" onChange={(value) => setRestTime(value)} />
           <hr />
