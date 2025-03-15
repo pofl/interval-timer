@@ -38,11 +38,6 @@
       border-radius: 3px;
       margin: 5px;
     }
-
-    input {
-      min-width: 4em;
-      padding: 0.33em 1em;
-    }
   </style>
 </head>
 
@@ -70,12 +65,23 @@
       };
 
       return (
-        <div>
+        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
           <button onClick={handleDecrement}>-5</button>
-          <input label={label} type="number" value={value} onChange={handleInputChange} />
+          <input
+            style={{
+              flexGrow: 1,
+              flexBasis: 0,
+              minWidth: 0,
+              padding: '0.33em 1em',
+            }}
+            label={label}
+            type="number"
+            value={value}
+            onChange={handleInputChange}
+          />
           <button onClick={handleIncrement}>+5</button>
         </div>
-      );
+      )
     }
 
     function IntervalTimer() {
