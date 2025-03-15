@@ -50,6 +50,34 @@
       audioElement.play();
     }
 
+    function SettingControl({ onChange, initialSetting, label }) {
+      const [localSetting, setLocalSetting] = useState(initialSetting || 5);
+
+      useEffect(() => {
+        onChange(localSetting);
+      }, [localSetting]);
+
+      const handleInputChange = (event) => {
+        setLocalSetting(parseInt(event.target.value));
+      };
+
+      const handleIncrement = () => {
+        setLocalSetting((oldValue) => oldValue + 5);
+      };
+
+      const handleDecrement = () => {
+        setLocalSetting((oldValue) => oldValue - 5);
+      };
+
+      return (
+        <div>
+          <button onClick={handleDecrement}>-5</button>
+          <input style={{ maxWidth: "10em", minWidth: "4em" }} label={label} type="number" value={localSetting} onChange={handleInputChange} />
+          <button onClick={handleIncrement}>+5</button>
+        </div>
+      );
+    }
+
     function IntervalTimer() {
       const [workTime, setWorkTime] = useState(3);
       const [restTime, setRestTime] = useState(2);
@@ -97,8 +125,8 @@
 
       return (
         <div>
-          <input style={{ maxWidth: "10em", minWidth: "4em" }} label="Work Time" type="number" value={workTime} onChange={(e) => setWorkTime(parseInt(e.target.value))} />
-          <input style={{ maxWidth: "10em", minWidth: "4em" }} label="Rest Time" type="number" value={restTime} onChange={(e) => setRestTime(parseInt(e.target.value))} />
+          <SettingControl initialSetting={3} label="Work Time" onChange={(value) => setWorkTime(value)} />
+          <SettingControl initialSetting={2} label="Rest Time" onChange={(value) => setRestTime(value)} />
           <button onClick={() => setIsPlaying(!isPlaying)}>
             {!isPlaying && timer > 0 ? "Play" : "Pause"}
           </button>
