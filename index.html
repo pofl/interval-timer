@@ -130,11 +130,17 @@
             Rest Time: {restTime}
           </p>
           <hr />
-          <button onClick={() => setIsPlaying(!isPlaying)}>
-            {!isPlaying && timer > 0 ? "Play" : "Pause"}
-          </button>
-          <button onClick={() => reset()}>Reset</button>
-          <p>{texts[mode]}: {timer} / {maxTime}</p>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div>
+              <button onClick={() => setIsPlaying(!isPlaying)}>
+                {!isPlaying && timer > 0 ? "Play" : "Pause"}
+              </button>
+              <button onClick={() => reset()}>Reset</button>
+            </div>
+            <div>Now: {texts[mode]}</div>
+            <div>Remaining: {timer}</div>
+            <div>Total: {maxTime}</div>
+          </div>
         </div>
       );
     }
