@@ -45,6 +45,11 @@
   <script type="text/babel">
     const { useState, useEffect } = React;
 
+    const audioElement = new Audio('https://cdn.freesound.org/previews/351/351550_3450800-lq.mp3'); // Replace with your actual URL
+    function playDing() {
+      audioElement.play();
+    }
+
     function IntervalTimer() {
       const [workTime, setWorkTime] = useState(3);
       const [restTime, setRestTime] = useState(2);
@@ -60,6 +65,7 @@
           return;
         }
         if (timer <= 0) {
+          playDing();
           const interval = setInterval(switchMode, 500);
           return () => clearInterval(interval);
         } else {
