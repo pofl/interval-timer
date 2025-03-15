@@ -73,14 +73,18 @@
     }
 
     function IntervalTimer() {
-      const [workTime, setWorkTime] = useState(3);
-      const [restTime, setRestTime] = useState(2);
+      const [storageKeyWorkTime, storageKeyRestTime] = ['workTime', 'restTime'];
+      const [workTime, setWorkTime] = useState(parseInt(localStorage.getItem(storageKeyWorkTime)) || 25);
+      const [restTime, setRestTime] = useState(parseInt(localStorage.getItem(storageKeyRestTime)) || 5);
       const [isPlaying, setIsPlaying] = useState(false);
       const [timer, setTimer] = useState(workTime);
       const modes = ['work', 'rest'];
       const texts = ['Work Time', 'Rest Time'];
       const [mode, setMode] = useState(0);
       const [maxTime, setMaxTime] = useState(workTime);
+
+      useEffect(() => { localStorage.setItem(storageKeyWorkTime, workTime) }, [workTime])
+      useEffect(() => { localStorage.setItem(storageKeyRestTime, restTime) }, [restTime])
 
       useEffect(() => {
         if (!isPlaying) {
