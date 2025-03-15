@@ -50,29 +50,23 @@
       audioElement.play();
     }
 
-    function SettingControl({ onChange, initialSetting, label }) {
-      const [localSetting, setLocalSetting] = useState(initialSetting || 5);
-
-      useEffect(() => {
-        onChange(localSetting);
-      }, [localSetting]);
-
+    function SettingControl({ onChange, value, label }) {
       const handleInputChange = (event) => {
-        setLocalSetting(parseInt(event.target.value));
+        onChange(parseInt(event.target.value));
       };
 
       const handleIncrement = () => {
-        setLocalSetting((oldValue) => oldValue + 5);
+        onChange(value + 5);
       };
 
       const handleDecrement = () => {
-        setLocalSetting((oldValue) => oldValue - 5);
+        onChange(value - 5);
       };
 
       return (
         <div>
           <button onClick={handleDecrement}>-5</button>
-          <input style={{ maxWidth: "10em", minWidth: "4em" }} label={label} type="number" value={localSetting} onChange={handleInputChange} />
+          <input style={{ maxWidth: "10em", minWidth: "4em" }} label={label} type="number" value={value} onChange={handleInputChange} />
           <button onClick={handleIncrement}>+5</button>
         </div>
       );
@@ -125,13 +119,22 @@
 
       return (
         <div>
-          <SettingControl initialSetting={3} label="Work Time" onChange={(value) => setWorkTime(value)} />
-          <SettingControl initialSetting={2} label="Rest Time" onChange={(value) => setRestTime(value)} />
+          <SettingControl value={workTime} label="Work Time" onChange={(value) => setWorkTime(value)} />
+          <SettingControl value={restTime} label="Rest Time" onChange={(value) => setRestTime(value)} />
+          <hr />
+          <p>
+            Settings
+            <br />
+            Work Time: {workTime}
+            <br />
+            Rest Time: {restTime}
+          </p>
+          <hr />
           <button onClick={() => setIsPlaying(!isPlaying)}>
             {!isPlaying && timer > 0 ? "Play" : "Pause"}
           </button>
           <button onClick={() => reset()}>Reset</button>
-          <span>{texts[mode]}: {timer} / {maxTime}</span>
+          <p>{texts[mode]}: {timer} / {maxTime}</p>
         </div>
       );
     }
