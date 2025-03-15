@@ -34,9 +34,27 @@
 
     button {
       background-color: var(--main-color);
-      padding: 0.33em 1em;
       /* border: 2px solid blue; */
       border-radius: 3px;
+    }
+
+    .pad-l {
+      padding: 0.33em 1em;
+    }
+
+    .fsize-s {
+      font-size: small;
+    }
+
+    .fsize-m {
+      font-size: medium;
+    }
+
+    .pad-s {
+      padding: 0.33em 0.5em;
+    }
+
+    .marg {
       margin: 5px;
     }
   </style>
@@ -58,23 +76,23 @@
       };
 
       return (
-        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-          <button onClick={() => onChange(value - 5)}>-5</button>
-          <button onClick={() => onChange(value - 1)}>-1</button>
+        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '5px' }} className='marg'>
+          <button className='pad-s fsize-m' onClick={() => onChange(value - 5)}>-5</button>
+          <button className='pad-s fsize-m' onClick={() => onChange(value - 1)}>-1</button>
           <input
             style={{
               flexGrow: 1,
               flexBasis: 0,
-              minWidth: 0,
-              padding: '0.33em 1em',
+              minWidth: '2em',
             }}
             label={label}
+            className='pad-s fsize-m'
             type="number"
             value={value}
             onChange={handleInputChange}
           />
-          <button onClick={() => onChange(value + 1)}>+1</button>
-          <button onClick={() => onChange(value + 5)}>+5</button>
+          <button className='pad-s fsize-m' onClick={() => onChange(value + 1)}>+1</button>
+          <button className='pad-s fsize-m' onClick={() => onChange(value + 5)}>+5</button>
         </div>
       )
     }
@@ -143,10 +161,10 @@
           <hr />
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <div>
-              <button onClick={() => setIsPlaying(!isPlaying)}>
+              <button className='pad-l marg' onClick={() => setIsPlaying(!isPlaying)}>
                 {!isPlaying && timer > 0 ? "Play" : "Pause"}
               </button>
-              <button onClick={() => reset()}>Reset</button>
+              <button className='pad-l marg' onClick={() => reset()}>Reset</button>
             </div>
             <div>Now: {texts[mode]}</div>
             <div>Remaining: {timer}</div>
