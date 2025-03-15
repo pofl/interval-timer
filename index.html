@@ -57,17 +57,10 @@
         onChange(parseInt(event.target.value));
       };
 
-      const handleIncrement = () => {
-        onChange(value + 5);
-      };
-
-      const handleDecrement = () => {
-        onChange(value - 5);
-      };
-
       return (
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-          <button onClick={handleDecrement}>-5</button>
+          <button onClick={() => onChange(value - 5)}>-5</button>
+          <button onClick={() => onChange(value - 1)}>-1</button>
           <input
             style={{
               flexGrow: 1,
@@ -80,7 +73,8 @@
             value={value}
             onChange={handleInputChange}
           />
-          <button onClick={handleIncrement}>+5</button>
+          <button onClick={() => onChange(value + 1)}>+1</button>
+          <button onClick={() => onChange(value + 5)}>+5</button>
         </div>
       )
     }
@@ -135,7 +129,7 @@
       }
 
       return (
-        <div style={{padding:'5px'}}>
+        <div style={{ padding: '5px' }}>
           <SettingControl value={workTime} label="Work Time" onChange={(value) => setWorkTime(value)} />
           <SettingControl value={restTime} label="Rest Time" onChange={(value) => setRestTime(value)} />
           <hr />
