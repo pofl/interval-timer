@@ -8,8 +8,9 @@
   <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://cdn.jsdelivr.net/npm/babel-standalone@6.26.0/babel.min.js"></script>
+  <!-- <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css"> -->
   <style>
-    @import url('https://fonts.cdnfonts.com/css/open-sans');
+    /* @import url('https://fonts.cdnfonts.com/css/open-sans'); */
 
     :root {
       --main-color: #ece5d2;
@@ -26,7 +27,7 @@
     }
 
     * {
-      font-family: 'Open Sans', sans-serif;
+      font-family: sans-serif;
       font-size: large;
     }
 
@@ -127,7 +128,7 @@
           <SettingControl value={restTime} label="Rest Time" onChange={(value) => setRestTime(value)} />
           <hr />
           <p>
-            Settings
+            <b>Settings</b>
             <br />
             Work Time: {workTime}
             <br />
